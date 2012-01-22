@@ -1,6 +1,6 @@
 <?php
 namespace CentralApps\CAN;
-abstract class Decoder_Keys_Core {
+abstract class Decoder_Keys_Standard extends Decoder_Keys_Core {
 	
 	protected $canID;
 	
