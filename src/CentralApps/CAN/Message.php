@@ -17,6 +17,11 @@ class Message {
 		return new Message_Type();
 	}
 	
+	public function getCanID()
+	{
+		return $this->canID;
+	}
+	
 	public function decode()
 	{
 		foreach( $this->decoder as $key )
