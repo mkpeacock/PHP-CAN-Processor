@@ -23,7 +23,8 @@ class Decoder_Keys_SingleBit extends Decoder_Keys_Core {
 	{
 		$decimalRepresentation = hexdec( $data );
 		$binaryRepresentation = decbin( $decimalRepresentation );
-		return $binaryRepresentation{ $this->bit };
+		// 8 bits in a byte, the first bit (0) starts on the right, so do 8 - the bit
+		return $binaryRepresentation{ 8 - $this->bit };
 		
 	}
 	
