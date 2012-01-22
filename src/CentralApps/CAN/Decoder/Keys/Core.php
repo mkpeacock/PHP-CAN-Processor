@@ -36,6 +36,7 @@ abstract class Decoder_Keys_Core {
 	
 	protected function applyTypeConversion( $data )
 	{
+		// TODO add logic here!
 		return $data;
 	}
 	
