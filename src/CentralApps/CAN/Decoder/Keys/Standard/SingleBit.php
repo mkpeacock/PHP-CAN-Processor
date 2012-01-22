@@ -1,6 +1,6 @@
 <?php
 namespace CentralApps\CAN;
-class Decoder_Keys_SingleBit extends Decoder_Keys_Core {
+class Decoder_Keys_Standard_SingleBit extends Decoder_Keys_Standard {
 	
 	private $byte;
 	private $bit;

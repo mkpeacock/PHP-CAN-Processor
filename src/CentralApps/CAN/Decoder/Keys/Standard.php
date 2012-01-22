@@ -2,9 +2,7 @@
 namespace CentralApps\CAN;
 abstract class Decoder_Keys_Standard extends Decoder_Keys_Core {
 	
-	protected $canID;
 	
-	protected $name;
 	protected $unit;
 	protected $multiplier;
 	protected $offset;
