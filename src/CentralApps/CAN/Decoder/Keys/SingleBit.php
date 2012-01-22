@@ -9,13 +9,22 @@ class Decoder_Keys_SingleBit extends Decoder_Keys_Core {
 	{
 		$BytesPositionInMessage = $this->calculateBytesPositionInMessage();
 		$messageData = $message->getMessage();
-		$data = $messageData{ $bytesPositionInMessage };
-		return $this->transformDataToEngineeringUnit( $data );
+		$byteData = $messageData{ $bytesPositionInMessage };
+		$data = $this->extractBit( $byteData );
+		return $this->transformToEngineeringUnit( $data );
 	}
 	
 	public function calculateBytesPositionInMessage()
 	{
 		return $this->byte/8;
+	}
+	
+	public function extractBit( $data )
+	{
+		$decimalRepresentation = hexdec( $data );
+		$binaryRepresentation = decbin( $decimalRepresentation );
+		return $binaryRepresentation{ $this->bit };
+		
 	}
 	
 	

@@ -13,7 +13,9 @@ abstract class Decoder_Keys_Core {
 		
 	abstract public function extractDataFromCAN( CAN_Message $message ); 
 	
-	protected function transformDataToEngineeringUnit( $data )
+	// take a potentially nonesensical numeric value and convert it to meaningful engineering units
+	// so that the value reflects the data it represents
+	protected function transformToEngineeringUnit( $data )
 	{
 		// check the ordering of these
 		$data = $this->applyOffset( $data );
