@@ -18,7 +18,7 @@ abstract class Decoder_Keys_Core {
 	protected function transformToEngineeringUnit( $data )
 	{
 		// check the ordering of these
-		$data = $applyTypeConversion( $data );
+		$data = $this->applyTypeConversion( $data );
 		$data = $this->applyMultiplier( $data );
 		$data = $this->applyOffset( $data );
 		return $data;
