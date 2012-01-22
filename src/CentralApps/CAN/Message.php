@@ -12,5 +12,18 @@ class Message {
 		$this->message = ( ! is_null( $message ) ) ? $message : $this->message;
 	}
 	
+	public function lookupType()
+	{
+		return new Message_Type();
+	}
+	
+	public function decode()
+	{
+		foreach( $this->decoder as $key )
+		{
+			$data = $key->extractDataFromCAN( $this );
+		}
+	}
+	
 
 }
