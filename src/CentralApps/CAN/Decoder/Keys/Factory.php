@@ -6,17 +6,17 @@ class Decoder_Keys_Factory {
 	public function __construct()
 	{
 		$size = null;
-		
+		$key = null;
 		switch( $size )
 		{
 			case 16:
-				// two bytes
+				$key = new Decoder_Keys_MultiByte();
 				break;
 			case 8:
-				// single byte
+				$key = new Decoder_Keys_SingleByte();
 				break;
 			case 1:
-				// singlebit;
+				$key = new Decoder_Keys_SingleBit();
 			default:
 				break;
 				
