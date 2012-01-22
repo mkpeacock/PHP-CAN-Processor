@@ -19,6 +19,7 @@ abstract class Decoder_Keys_Core {
 	{
 		// check the ordering of these
 		$data = $this->applyTypeConversion( $data );
+		$data = bindec( $data );
 		$data = $this->applyMultiplier( $data );
 		$data = $this->applyOffset( $data );
 		return $data;
@@ -37,6 +38,12 @@ abstract class Decoder_Keys_Core {
 	protected function applyTypeConversion( $data )
 	{
 		// TODO add logic here!
+		if( ! is_null( $this->dataType ) )
+		{
+			$convertorClass = "Decoder_DataTypes_" . ucfirst( strtolower( $this->dataType ) );
+			$convertor = new ConvertorClass();
+			$data = $convertor->convertType( $data );
+		}
 		return $data;
 	}
 	
