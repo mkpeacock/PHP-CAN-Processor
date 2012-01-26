@@ -5,18 +5,18 @@ class Decoder_Keys_SingleBit extends Decoder_Keys_Core {
 	private $byte;
 	private $bit;
 	
-	public function extractDataFromCAN( CAN_Message $message )
+	public function extractDataFromCAN( Message $message )
 	{
 		$BytesPositionInMessage = $this->calculateBytesPositionInMessage();
 		$messageData = $message->getMessage();
-		$byteData = $messageData{ $bytesPositionInMessage };
+		$byteData = substr( $messageData, $bytesPositionInMessage, 2 );
 		$data = $this->extractBit( $byteData );
 		return $this->transformToEngineeringUnit( $data );
 	}
 	
 	public function calculateBytesPositionInMessage()
 	{
-		return $this->byte/8;
+		return $this->byte*2;
 	}
 	
 	public function extractBit( $data )
