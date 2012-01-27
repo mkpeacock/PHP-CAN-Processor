@@ -20,7 +20,7 @@ $singleByteKey->setDataLength( 8 );
 $singleByteKey->setDataType( null );
 
 $decoderKeysCollection->add( $singleByteKey );
-$decoder = new CentralApps\CAN\Decoder( $decoderKeysCollection );
+$decoder = new CentralApps\CAN\Decoder_Standard( $decoderKeysCollection );
 $decoder->decode( $message );
 
 $decoderKeysCollection = new CentralApps\CAN\Decoder_Keys_Collection();
@@ -36,7 +36,7 @@ $singleByteKey->setDataLength( 16 );
 $singleByteKey->setDataType( null );
 
 $decoderKeysCollection->add( $singleByteKey );
-$decoder = new CentralApps\CAN\Decoder( $decoderKeysCollection );
+$decoder = new CentralApps\CAN\Decoder_Standard( $decoderKeysCollection );
 $decoder->decode( $message );
 
 $message = new CentralApps\CAN\Message( '0C0', '83E7000000180000' );
@@ -54,8 +54,35 @@ $singleByteKey->setDataLength( 16 );
 $singleByteKey->setDataType( 'short' );
 
 $decoderKeysCollection->add( $singleByteKey );
-$decoder = new CentralApps\CAN\Decoder( $decoderKeysCollection );
-$decoder->decode( $message );
+$decoder = new CentralApps\CAN\Decoder_Standard( $decoderKeysCollection );
+$units = $decoder->decode( $message );
+foreach( $units as $unit )
+{
+	echo $unit;
+}
+
+$message = new CentralApps\CAN\Message( '0C0', '0183E70000180000' );
+
+$decoderKeysCollection = new CentralApps\CAN\Decoder_Keys_Collection();
+$singleByteKey = new CentralApps\CAN\Decoder_Keys_MultiByte();
+$singleByteKey->setCanID( '0C0' );
+$singleByteKey->setName( 'SOC' );
+$singleByteKey->setUnit( "%" );
+$singleByteKey->setMultiplier( 0 );
+$singleByteKey->setOffset( 0 );
+$singleByteKey->setMostSignificantByte( 1 );
+$singleByteKey->setLeastSignificantByte( 2 );
+$singleByteKey->setDataLength( 16 );
+$singleByteKey->setDataType( 'short' );
+
+$decoderKeysCollection->add( $singleByteKey );
+$decoder = new CentralApps\CAN\Decoder_Multiplex( $decoderKeysCollection );
+$decoder->setMultiplexByte(0);
+$units = $decoder->decode( $message );
+foreach( $units as $unit )
+{
+	echo $unit;
+}
 
 /**
  * To create a CAN message decoder we need to create a message object, and lookup the type of message this is (multiplex or standard)

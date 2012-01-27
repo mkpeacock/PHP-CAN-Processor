@@ -92,9 +92,14 @@ abstract class Decoder_Keys_Core {
 		return $data;
 	}
 	
-	protected function getUnit()
+	public function getUnit()
 	{
 		return $this->unit;
+	}
+	
+	public function getName()
+	{
+		return $this->name;
 	}
 	
 	
