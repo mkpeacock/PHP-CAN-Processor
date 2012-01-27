@@ -12,11 +12,6 @@ class Message {
 		$this->message = ( ! is_null( $message ) ) ? $message : $this->message;
 	}
 	
-	public function lookupType()
-	{
-		return new Message_Type();
-	}
-	
 	public function getCanID()
 	{
 		return $this->canID;
@@ -28,6 +23,11 @@ class Message {
 		{
 			$data = $key->extractDataFromCAN( $this );
 		}
+	}
+	
+	public function getMessage()
+	{
+		return $this->message;
 	}
 	
 
