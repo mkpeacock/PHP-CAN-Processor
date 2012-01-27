@@ -6,6 +6,7 @@ require_once( 'splClassLoader.php' );
 $classLoader = new SplClassLoader('CentralApps\CAN', FRAMEWORK_PATH );
 $classLoader->register();
 
+
 $message = new CentralApps\CAN\Message( '0C0', '2C01000000180000' );
 
 $decoderKeysCollection = new CentralApps\CAN\Decoder_Keys_Collection();
