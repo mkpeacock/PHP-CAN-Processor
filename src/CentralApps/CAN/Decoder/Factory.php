@@ -26,7 +26,7 @@ class Decoder_Factory {
 			{
 				$decoder = new Decoder_Standard();
 			}
-			$decoder->setCanID( $canID );
+			$decoder->setCanID( $canID['id'] );
 			foreach( $canID->engineeringUnit as $engineeringUnit )
 			{
 				$key = $this->buildDecoderKeyFromObject( $engineeringUnit );
