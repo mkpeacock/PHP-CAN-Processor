@@ -1,15 +1,12 @@
 <?php
 namespace CentralApps\CAN;
-abstract class Decoder {
+abstract class Decoder implements \IteratorAggregate, \Countable{
 	
 	protected $message;
 	protected $canID;
 	protected $decoderKeysCollection;
 	
-	public function __construct( Decoder_Keys_Collection $decoderKeysCollection )
-	{
-		$this->decoderKeysCollection = $decoderKeysCollection;
-	}
+	public function __construct(){}
 
 	public function decode( Message $message )
 	{
@@ -33,6 +30,21 @@ abstract class Decoder {
 	public function getCanID()
 	{
 		return $this->canID;
+	}
+	
+	public function getIterator()
+	{
+		return new \ArrayIterator( $this->decoderKeysCollection );
+	}
+	
+	public function add( $object )
+	{
+		$this->decoderKeysCollection[] = $object;
+	}
+	
+	public function count()
+	{
+		return count( $this->decoderKeysCollection );
 	}
 	
 }
