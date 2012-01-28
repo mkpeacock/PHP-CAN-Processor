@@ -27,7 +27,6 @@ class Decoder_Factory {
 				$decoder = new Decoder_Standard();
 			}
 			
-			echo $canID['id'];
 			foreach( $canID->engineeringUnit as $engineeringUnit )
 			{
 				$key = $this->buildDecoderKeyFromObject( $engineeringUnit );
@@ -54,11 +53,13 @@ class Decoder_Factory {
 				$key->setLeastSignificantBit( $object->leastSignificantBit );
 				break;
 			case 'single-byte':
-				$this->setByte( $object->byte );
+				$key = new Decoder_Keys_SingleByte();
+				$key->setByte( $object->byte );
 				break;
 			case 'multi-byte':
-				$this->setMostSignificantByte( $object->mostSignificantByte );
-				$this->setLeastSignificantByte( $object->leastSignificantByte );
+				$key = new Decoder_Keys_MultiByte();
+				$key->setMostSignificantByte( $object->mostSignificantByte );
+				$key->setLeastSignificantByte( $object->leastSignificantByte );
 				break;
 		}
 		$key->setUnit( $object->unit );
