@@ -9,6 +9,64 @@ class Decoder_Factory {
 	
 	}
 	
+	public function makeDecoderFromXMLFile( $xmlFileName )
+	{
+		$canSpecification = new \SimpleXMLElement( file_get_contents( $xmlFileName ) );
+		$collection = new Decoder_Collection();
+		foreach( $canSpecification->canID as $canID )
+		{
+			if( $canID['type'] == 'multiplex' )
+			{
+				$decoder = new Decoder_Multiplex();
+				$decoder->setMultiplexByte( $canID['multiplexByte'] );
+				$decoder->setNamePrefix($canID['namePrefix']);
+				$decoder->setNameSuffix($canID['nameSuffix']);
+			}
+			else
+			{
+				$decoder = new Decoder_Standard();
+			}
+			
+			echo $canID['id'];
+			foreach( $canID->engineeringUnit as $engineeringUnit )
+			{
+				$key = $this->buildDecoderKeyFromObject( $engineeringUnit );
+				$decoder->add( $key );
+			}
+			$collection->add( $decoder );
+		}
+		return $collection;
+	}
+	
+	private function buildDecoderKeyFromObject( $object )
+	{
+		switch( $object['type'] )
+		{
+			case 'single-bit';
+				$key = new Decoder_Keys_SingleBit();
+				$key->setByte( $object->byte );
+				$key->setBit( $object->bit );
+				break;
+			case 'multi-bit':
+				$key = new Decoder_Keys_SingleBit();
+				$key->setByte( $object->byte );
+				$key->setMostSignificantBit( $object->mostSignificantBit );
+				$key->setLeastSignificantBit( $object->leastSignificantBit );
+				break;
+			case 'single-byte':
+				$this->setByte( $object->byte );
+				break;
+			case 'multi-byte':
+				$this->setMostSignificantByte( $object->mostSignificantByte );
+				$this->setLeastSignificantByte( $object->leastSignificantByte );
+				break;
+		}
+		$key->setUnit( $object->unit );
+		$key->setName( $object->name );
+		
+		return $key;
+	}
+	
 	// take a particular CAN Message and lookup the decoding keys for variables held within
 	// push these keys into a collection and return
 	public function makeDecoderFromCan( Message $message )
