@@ -4,7 +4,7 @@ class Decoder_Multiplex extends Decoder {
 	
 	private $multiplexByte = 0;
 	private $namePrefix = '';
-	private $nameSuffix = '_P%1$d';
+	private $nameSuffix = '';
 	private $multiplexNumber;
 		
 	protected function applyDecoding( Decoder_Keys_Core $decoderKey )
@@ -29,6 +29,16 @@ class Decoder_Multiplex extends Decoder {
 	public function setMultiplexByte( $byte )
 	{
 		$this->multiplexByte = $byte;
+	}
+	
+	public function setNameSuffix( $suffix )
+	{
+		$this->nameSuffix = $suffix;
+	}
+	
+	public function setNamePrefix( $prefix )
+	{
+		$this->namePrefix = $prefix;
 	}
 	
 	
