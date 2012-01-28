@@ -29,6 +29,21 @@ class Decoder_Keys_MultiBit extends Decoder_Keys_Core {
 		
 	}
 	
+	public function setByte( $byte )
+	{
+		$this->byte = $byte;
+	}
+	
+	public function setMostSignificantBit( $bit )
+	{
+		$this->mostSignificantBit = $bit;
+	}
+	
+	public function setLeastSignificantBit( $bit )
+	{
+		$this->leastSignificantBit = $bit;
+	}
+	
 	
 	
 }
