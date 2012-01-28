@@ -25,4 +25,14 @@ abstract class Decoder {
 	
 	abstract protected function applyDecoding( Decoder_Keys_Core $key ); 
 	
+	public function setCanID( $canID )
+	{
+		$this->canID = $canID;
+	}
+	
+	public function getCanID()
+	{
+		return $this->canID;
+	}
+	
 }
