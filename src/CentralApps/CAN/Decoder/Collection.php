@@ -6,12 +6,12 @@ class Decoder_Collection implements \IteratorAggregate, \Countable {
 	
 	public function getIterator()
 	{
-		return new \ArrayIterator( $this->collection );
+		return new \ArrayIterator( array_values( $this->collection ) );
 	}
 	
 	public function add( $object )
 	{
-		$this->collection[] = $object;
+		$this->collection[ $object->getCanID() ] = $object;
 	}
 	
 	public function count()
