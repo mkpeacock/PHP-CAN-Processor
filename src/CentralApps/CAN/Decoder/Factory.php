@@ -64,7 +64,9 @@ class Decoder_Factory {
 		}
 		$key->setUnit( $object->unit );
 		$key->setName( $object->name );
-		
+		$key->setMultiplier( floatval( $object->multiplier ) );
+		$key->setOffset( intval( $object->offset ) );
+		$key->setDataType( $object->dataType );
 		return $key;
 	}
 	
