@@ -66,7 +66,7 @@ class Decoder_Factory {
 		$key->setName( $object->name );
 		$key->setMultiplier( floatval( $object->multiplier ) );
 		$key->setOffset( intval( $object->offset ) );
-		$key->setDataType( $object->dataType );
+		$key->setDataType( ( $object->dataType != '' && $object->dataType != 'null' ) ? $object->dataType : null );
 		return $key;
 	}
 	
