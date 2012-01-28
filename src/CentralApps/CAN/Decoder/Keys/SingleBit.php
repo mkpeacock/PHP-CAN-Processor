@@ -28,6 +28,16 @@ class Decoder_Keys_SingleBit extends Decoder_Keys_Core {
 		
 	}
 	
+	public function setByte( $byte )
+	{
+		$this->byte = $byte;
+	}
+	
+	public function setBit( $bit )
+	{
+		$this->bit = $bit;
+	}
+	
 	
 	
 }
