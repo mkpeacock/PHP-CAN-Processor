@@ -83,6 +83,7 @@ abstract class Decoder_Keys_Core {
 		{
 			$convertorClass = "CentralApps\CAN\Decoder_DataTypes_" . ucfirst( strtolower( $this->dataType ) );
 			$convertor = new $convertorClass();
+			$convertor->setNumberOfBitsInData( $this->dataLength );
 			$data = $convertor->convertType( $data );
 		}
 		else
