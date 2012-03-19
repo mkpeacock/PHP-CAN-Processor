@@ -9,6 +9,11 @@ class Decoder_DataTypes_Short implements Decoder_DataTypes_Interface {
 	
 	private $numberOfBitsInData = 16;
 	
+	public function setNumberOfBitsInData( $numberOfBits )
+	{
+		$this->numberOfBitsInData = $numberOfBits;
+	}
+	
 	public function convertType( $dataAsBinary )
 	{
 		// TODO this decbin line is repeated, in Core.php (transformToEngineeringUnit), can we abstract
