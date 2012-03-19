@@ -18,7 +18,7 @@ class Decoder_DataTypes_Short implements Decoder_DataTypes_Interface {
 	{
 		// TODO this decbin line is repeated, in Core.php (transformToEngineeringUnit), can we abstract
 		$data = bindec($dataAsBinary);
-		// provided the value is 16 bits long, check to see if the most significant bit (msb) is bit 16
+		// provided the value is 16 bits long, check to see if the most significant bit (msb) is bit number $this->numberOfBitsInData
 		if( strlen( $dataAsBinary ) == $this->numberOfBitsInData && $dataAsBinary{0} == "1" )
 		{
 			// perform a two's compliment on the data to get the negative value
